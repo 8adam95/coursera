@@ -28,8 +28,6 @@ vector<int> adj[MAXN];
 
 void bfs(int u)
 {
-    height++;
-
     Q.push(u);
     while(!Q.empty())
     {
@@ -38,6 +36,7 @@ void bfs(int u)
         for(int i = 0; i < adj[v].size(); i++)
         {
             h[adj[v][i]] = h[v]+1;
+            height = max(height, h[adj[v][i]]);
             Q.push(adj[v][i]);
         }
     }
@@ -57,7 +56,7 @@ int main()
             adj[u].PB(i);
     }
     
-    h[root] = 0;
+    h[root] = 1;
     bfs(root);
 
     printf("%d\n", height);
